@@ -1,12 +1,17 @@
 package activities;
 
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -36,6 +41,16 @@ public class LoginScreen extends AppCompatActivity {
     AlertDialog.Builder builder;
     ProgressDialog progressDialog;
     String status,token,candidateId,empName,email,deptId,deptName,roleId,roleName,status_message,st_pwd_mdhash;
+    private View popupInputDialogView = null;
+    private EditText userNameEditText = null;
+    private EditText passwordEditText = null;
+    private EditText emailEditText = null;
+    private Button saveUserDataButton = null;
+    private Button cancelUserDataButton = null;
+    private EditText ed_feedback,ed_feedback_follwupdate;
+    private Button btn_foolowup_date,btn_submit_feedback,btn_cancel;
+    private String st_ed_feedback,st_ed_feedback_follwupdate;
+    private int year = 0,month,day,myear,mmonth,mday;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +79,48 @@ public class LoginScreen extends AppCompatActivity {
         ed_username.setText("9841112704");
         ed_password.setText("Welcome@123");
 
+        Button btn_test_popup=findViewById(R.id.btn_test_popup);
+        btn_test_popup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(LoginScreen.this, "popup form", Toast.LENGTH_SHORT).show();
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(LoginScreen.this);
+                alertDialogBuilder.setTitle("Feedback Entry");
+                alertDialogBuilder.setIcon(R.drawable.feedback_popupicon);
+                alertDialogBuilder.setCancelable(false);
+                initPopupViewControls();
+                alertDialogBuilder.setView(popupInputDialogView);
+                final AlertDialog alertDialog = alertDialogBuilder.create();
+                alertDialog.show();
+
+                btn_foolowup_date.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        showDialog(999);
+                    }
+                });
+
+                btn_submit_feedback.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        st_ed_feedback=ed_feedback.getText().toString();
+                        st_ed_feedback_follwupdate=ed_feedback_follwupdate.getText().toString();
+
+                        System.out.println(st_ed_feedback+"====="+st_ed_feedback_follwupdate);
+                        alertDialog.cancel();
+                    }
+                });
+
+                btn_cancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        alertDialog.dismiss();
+                    }
+                });
+            }
+        });
+
+
         btn_login=findViewById(R.id.btn_login);
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,6 +143,48 @@ public class LoginScreen extends AppCompatActivity {
 
             }
         });
+
+    }
+
+    @Override
+    protected Dialog onCreateDialog(int id) {
+        // TODO Auto-generated method stub
+        if (id == 999) {
+            return new DatePickerDialog(this,
+                    myDateListener, year, month, day);
+        }
+        return null;
+    }
+
+    private DatePickerDialog.OnDateSetListener myDateListener = new
+            DatePickerDialog.OnDateSetListener() {
+                @Override
+                public void onDateSet(DatePicker arg0,
+                                      int arg1, int arg2, int arg3) {
+                    // TODO Auto-generated method stub
+                    // arg1 = year
+                    // arg2 = month
+                    // arg3 = day
+                    showDate(arg1, arg2+1, arg3);
+                }
+            };
+
+    private void showDate(int year, int month, int day) {
+        ed_feedback_follwupdate.setText(new StringBuilder().append(month).append("/")
+                .append(day).append("/").append(year));
+    }
+
+    private void initPopupViewControls() {
+        // Get layout inflater object.
+        LayoutInflater layoutInflater = LayoutInflater.from(LoginScreen.this);
+        // Inflate the popup dialog from a layout xml file.
+        popupInputDialogView = layoutInflater.inflate(R.layout.popup_feedback_dialog, null);
+        // Get user input edittext and button ui controls in the popup dialog.
+        ed_feedback = (EditText) popupInputDialogView.findViewById(R.id.ed_feedback);
+        ed_feedback_follwupdate = (EditText) popupInputDialogView.findViewById(R.id.ed_feedback_follwupdate);
+        btn_foolowup_date=popupInputDialogView.findViewById(R.id.btn_foolowup_date);
+        btn_submit_feedback=popupInputDialogView.findViewById(R.id.btn_submit_feedback);
+        btn_cancel=popupInputDialogView.findViewById(R.id.btn_cancel);
 
     }
 

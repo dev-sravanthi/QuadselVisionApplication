@@ -57,8 +57,8 @@ public class NewEnquiryForm extends AppCompatActivity  implements AdapterView.On
     ProgressDialog progressDialog;
     ArrayList<String> list_clientid,list_clientname,list_deptid,list_deptname,list_empid,list_empname,list_prodserv_id,list_prodserv_name;
     boolean networkAvailability=false;
-    String department="",selected_dept_code="",selected_employee_code="",selected_client_code="", employee="",dept_code="",client="";
-    int spin_dept_pstn=0,spin_emp_pstn=0,spin_client_pstn=0;
+    String department="",selected_dept_code="",selected_employee_code="",selected_client_code="", employee="",dept_code="",client="", prodsericd="",selected_prodserv_code="";
+    int spin_dept_pstn=0,spin_emp_pstn=0,spin_client_pstn=0,spin_prodserv_pstn=0;
     private ArrayAdapter<CharSequence> adapter;
     Button btn_submit_nef,btn_dp_date,btn_dp_followupdate;
     ArrayList<String> listsub_ids;
@@ -144,7 +144,7 @@ public class NewEnquiryForm extends AppCompatActivity  implements AdapterView.On
         ll_ed_solutions=findViewById(R.id.ll_ed_solutions);
 
         adapter = ArrayAdapter.createFromResource(NewEnquiryForm.this,
-                R.array.clienttype, android.R.layout.simple_spinner_item);
+                R.array.clienttype, R.layout.spinner_text);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spin_clienttype.setAdapter(adapter);
 
@@ -181,7 +181,7 @@ public class NewEnquiryForm extends AppCompatActivity  implements AdapterView.On
         });
 
         adapter = ArrayAdapter.createFromResource(NewEnquiryForm.this,
-                R.array.calltype, android.R.layout.simple_spinner_item);
+                R.array.calltype, R.layout.spinner_text);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spin_calltype.setAdapter(adapter);
 
@@ -198,7 +198,7 @@ public class NewEnquiryForm extends AppCompatActivity  implements AdapterView.On
         });
 
         adapter = ArrayAdapter.createFromResource(NewEnquiryForm.this,
-                R.array.product_service, android.R.layout.simple_spinner_item);
+                R.array.product_service, R.layout.spinner_text);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spin_productservice.setAdapter(adapter);
 
@@ -972,7 +972,7 @@ public class NewEnquiryForm extends AppCompatActivity  implements AdapterView.On
 
                         ArrayAdapter<String> adapter_spin_client = new ArrayAdapter<String>(
                                 getApplicationContext(), R.layout.spinner_text,list_prodserv_name);
-                        spin_productservice.setAdapter(adapter_spin_client);
+                        spin_sub_prodserv.setAdapter(adapter_spin_client);
 
                     }else{
                         status_message=productServiceBean.getStatus_message();
@@ -1087,6 +1087,17 @@ public class NewEnquiryForm extends AppCompatActivity  implements AdapterView.On
                 selected_employee_code=list_empid.get(spin_emp_pstn-1).toString().trim();
                 employee=list_empname.get(spin_emp_pstn).toString().trim();
                 System.out.println("selected_employee_code===="+selected_employee_code);
+            }
+        }
+
+        if(parent==spin_sub_prodserv)
+        {
+            spin_prodserv_pstn=position;
+            if(spin_prodserv_pstn>0)
+            {
+                selected_prodserv_code=list_prodserv_id.get(spin_prodserv_pstn-1).toString().trim();
+                prodsericd=list_prodserv_name.get(spin_prodserv_pstn).toString().trim();
+                System.out.println("selected_prodserv_code===="+selected_prodserv_code);
             }
         }
 

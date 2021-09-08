@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name="activities.NewEnquiryForm"
+        <activity android:name="activities.LoginScreen"
             android:theme="@style/Theme.Design.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,6 +25,7 @@
         <activity android:name="activities.MenuScreen"/>
         <activity android:name="activities.EnquiryList"/>
         <activity android:name="activities.EnquiryView"/>
+        <activity android:name="activities.NewEnquiryForm"/>
 
     </application>
 
