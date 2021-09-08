@@ -18,6 +18,9 @@
         android:orientation="vertical"
         android:layout_weight="1">
 
+        <include
+            layout="@layout/toolbar"/>
+
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -29,18 +32,18 @@
                 android:layout_gravity="center"
                 android:gravity="center">
 
-                <util.MyCustomTextView_Bold
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Enquiry Candidate List"
-                    android:layout_marginLeft="@dimen/_10sdp"
-                    android:layout_marginRight="@dimen/_10sdp"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:layout_marginBottom="@dimen/_5sdp"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:textSize="@dimen/_18sdp"
-                    android:textColor="@color/white"/>
+<!--                <util.MyCustomTextView_Bold-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Enquiry Candidate List"-->
+<!--                    android:layout_marginLeft="@dimen/_10sdp"-->
+<!--                    android:layout_marginRight="@dimen/_10sdp"-->
+<!--                    android:layout_marginTop="@dimen/_10sdp"-->
+<!--                    android:layout_marginBottom="@dimen/_5sdp"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    android:gravity="center"-->
+<!--                    android:textSize="@dimen/_18sdp"-->
+<!--                    android:textColor="@color/greenone"/>-->
 
                 <Button
                     android:id="@+id/btn_newenquiryform"
@@ -66,8 +69,8 @@
 
                         <TableRow
                             android:layout_width="wrap_content"
-                            android:layout_height="@dimen/_35sdp"
-                            android:background="#032462">
+                            android:layout_height="@dimen/_40sdp"
+                            android:background="@color/btn_blue">
 
                             <util.MyCustomTextView_Bold
                                 android:layout_width="40dp"
@@ -199,7 +202,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+        android:background="@color/greenone"
         android:orientation="vertical">
 
         <LinearLayout

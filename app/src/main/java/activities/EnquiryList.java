@@ -14,6 +14,8 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -47,6 +49,14 @@ public class EnquiryList extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.enquiry_candidate_list);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        toolbar.setTitle("Enquiry Candidate List");
+        toolbar.setSubtitle("");
+        toolbar.setTitleTextColor(ContextCompat.getColor(getApplicationContext(),R.color.black));
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
 
         Intent i=getIntent();
         token=i.getStringExtra("token");
@@ -94,7 +104,8 @@ public class EnquiryList extends AppCompatActivity {
 
     private void loadJSON() {
         showBar();
-        Call<EnquiryCanListBean> call= RetrofitClient.getInstance().getApi().getenquiry_list("3db7d411003e2c27d64616a9615a4a00");
+        Call<EnquiryCanListBean> call= RetrofitClient.getInstance().getApi().
+                getenquiry_list(token);
         call.enqueue(new Callback<EnquiryCanListBean>() {
 
             @Override
@@ -168,7 +179,6 @@ public class EnquiryList extends AppCompatActivity {
                         e.printStackTrace();
                     }
                 }
-
             }
 
             @Override
@@ -246,7 +256,7 @@ public class EnquiryList extends AppCompatActivity {
             holder.img_eye_view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent i=new Intent(EnquiryList.this,EnquiryList.class);
+                    Intent i=new Intent(EnquiryList.this,EnquiryView.class);
                     i.putExtra("token",token);
                     i.putExtra("enquiryId",enquiryId);
                     i.putExtra("login_id",login_id);
@@ -366,6 +376,12 @@ public class EnquiryList extends AppCompatActivity {
         if (progressDialog != null && progressDialog.isShowing()) {
             progressDialog.dismiss();
         }
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 
     @Override

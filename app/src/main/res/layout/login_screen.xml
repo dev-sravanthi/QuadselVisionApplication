@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:background="@color/white">
+    android:background="@drawable/background">
 
 <!--    <ImageView-->
 <!--        android:layout_width="match_parent"-->
@@ -30,10 +30,10 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_gravity="center"
-                android:paddingLeft="16dp"
-                android:paddingRight="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
+                android:paddingLeft="@dimen/_16sdp"
+                android:paddingRight="@dimen/_16sdp"
+                android:layout_marginLeft="@dimen/_16sdp"
+                android:layout_marginRight="@dimen/_16sdp"
                 android:gravity="center">
 
                 <ImageView
@@ -54,11 +54,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_40sdp"
                     android:layout_gravity="center"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="@dimen/_20sdp"
                     android:background="@drawable/shape"
                     android:drawableLeft="@drawable/ic_person_black_24dp"
                     android:gravity="center"
-                    android:hint="Enter Outlet No"
+                    android:hint="Enter Username"
                     android:textColor="@color/black"/>
 
                 <util.MyCustomEditText
@@ -69,7 +69,7 @@
                     android:hint="Enter Password"
                     android:gravity="center"
                     android:layout_gravity="center"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="@dimen/_15sdp"
                     android:inputType="textPassword"
                     android:drawableLeft="@drawable/ic_vpn_key_black_24dp"
                     android:textColor="@color/black"/>
@@ -81,9 +81,10 @@
                     android:text="Login"
                     android:background="@drawable/button_style"
                     android:textColor="@color/white"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="@dimen/_15sdp"
                     android:layout_gravity="center"
-                    android:layout_marginBottom="15dp"/>
+                    android:layout_marginBottom="@dimen/_15sdp"
+                    android:textSize="@dimen/_15sdp"/>
 
             </LinearLayout>
 
@@ -107,11 +108,12 @@
                 android:id="@+id/scrolltext"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="3dp"
-                android:layout_marginTop="3dp"
+                android:layout_marginBottom="@dimen/_2sdp"
+                android:layout_marginTop="@dimen/_2sdp"
                 android:text="TSDPS Website"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_12ssp" />
+
         </LinearLayout>
 
     </RelativeLayout>
